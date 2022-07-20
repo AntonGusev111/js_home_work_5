@@ -1,0 +1,38 @@
+<p>До окончания розыгрыша осталось: <a id ="hours"></a> <a>:</a> <a id='minutes'></a> <a>:</a> <a id="seconds"></a></p>
+
+<script type="text/javascript" >
+    function timerClock(deadline) {
+    let t = deadline - Date.parse(new Date());  
+    let seconds = Math.floor( (t/1000) % 60 );  
+    let minutes = Math.floor( (t/1000/60) % 60 );  
+    let hours = Math.floor( (t/(1000*60*60)) % 24 );  
+    return {  
+    'total': t,  
+    'hours': hours,  
+    'minutes': minutes,  
+    'seconds': seconds  
+    };
+}
+
+
+
+
+const deadline = Date.parse(new Date()) + 5000;
+let hours = document.getElementById("hours");
+let minutes = document.getElementById("minutes");
+let seconds = document.getElementById("seconds");
+let interval = setInterval(function(){
+    let t = timerClock(deadline);
+    hours.innerHTML = ('0' + t.hours).slice(-2);;
+    minutes.innerHTML = ('0' + t.minutes).slice(-2);;
+    seconds.innerHTML = ('0' + t.seconds).slice(-2);;
+    if (t.total <=0){
+            clearInterval(interval);
+            alert('Вы выиграли!');
+            location='https://st2.depositphotos.com/1001291/7177/v/450/depositphotos_71778159-stock-illustration-shooting-slapstick-on-a-white.jpg';
+
+        }
+})
+
+
+</script>
